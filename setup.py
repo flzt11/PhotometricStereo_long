@@ -13,7 +13,7 @@ setup(
     description='Photometric Stereo Package',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    url='https://github.com/flzt11/TEST',  # 修改为你的 GitHub 仓库地址
+    url='https://github.com/flzt11/TEST.git',  # 修改为你的 GitHub 仓库地址
     classifiers=[
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',
