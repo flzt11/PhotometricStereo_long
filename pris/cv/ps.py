@@ -6,6 +6,10 @@ from ..utils import psutil
 import numpy as np
 from sklearn.preprocessing import normalize
 
+DATA_FOLDERNAME = './cv/data/bunny/bunny_lambert/'  # Lambertian diffuse with cast shadow
+LIGHT_FILENAME = './cv/data/bunny/lights.npy'
+MASK_FILENAME = './cv/data/bunny/mask.png'
+GT_NORMAL_FILENAME = './cv/data/bunny/gt_normal.npy'
 
 class PS(object):
 
@@ -113,5 +117,35 @@ class PS(object):
         if self.background_ind is not None:
             for i in range(self.N.shape[1]):
                 self.N[self.background_ind, i] = 0
+
+rps = None
+
+def ps(action):
+
+    global rps  # 引用全局变量 rps
+
+    if action == "load image and light":
+        # 加载图像和光源
+        print("Loading image and light...")
+        if rps is None:
+            rps = PS()
+        psutil.load_all(rps, mask_filename=MASK_FILENAME, light_filename=LIGHT_FILENAME, data_foldername=DATA_FOLDERNAME)
+        print("Image and light loaded.")
+    elif action == "run photometric stereo":
+        # 运行光度立体法
+        print("Running photometric stereo...")
+        if rps is None:
+            raise ValueError("rps not initialized. Please run 'load image and light' first.")
+        psutil.solve_and_save(rps, normal_map_filename="./est_normal")
+        print("Photometric stereo run completed.")
+    elif action == "show results":
+        # 显示结果
+        print("Displaying results...")
+        if rps is None:
+            raise ValueError("rps not initialized. Please run 'load image and light' first.")
+        psutil.evaluate_and_display(rps, GT_NORMAL_FILENAME)
+        print("Results displayed.")
+    else:
+        print("Unknown action:", action)
 
 

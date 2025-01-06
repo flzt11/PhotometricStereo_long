@@ -173,10 +173,14 @@ def solve_and_save(ps_instance, normal_map_filename):
     print(f"Photometric stereo: elapsed_time:{elapsed_time}[sec]")
     ps_instance.save_normalmap(filename=normal_map_filename)  # Save the estimated normal map
 
-def evaluate_and_display(ps_instance, GT_NORMAL_FILENAME):
-    N_gt = np.reshape(load_normalmap_from_npy(filename=GT_NORMAL_FILENAME), (ps_instance.height * ps_instance.width, 3))  # Load and reshape the ground truth normal
-    angular_err = evaluate_angular_error(N_gt, ps_instance.N, ps_instance.background_ind)  # Compute angular error
-    print("Mean angular error [deg]: ", np.mean(angular_err[:]))  # Print the mean angular error
-    disp_normalmap(normal=ps_instance.N, height=ps_instance.height, width=ps_instance.width)  # Display the normal map
-    print("done.")  # Print done message
 
+def evaluate_and_display(ps_instance, GT_NORMAL_FILENAME):
+    # Load and reshape the ground truth normal map
+    N_gt = np.reshape(load_normalmap_from_npy(filename=GT_NORMAL_FILENAME), (ps_instance.height * ps_instance.width, 3))
+    # Compute the angular error
+    angular_err = evaluate_angular_error(N_gt, ps_instance.N, ps_instance.background_ind)
+    # Print the mean angular error
+    print("Mean angular error [deg]: ", np.mean(angular_err[:]))
+    # Display the normal map
+    disp_normalmap(normal=ps_instance.N, height=ps_instance.height, width=ps_instance.width)
+    print("done.")
