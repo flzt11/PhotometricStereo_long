@@ -6,10 +6,10 @@ from ..utils import psutil
 import numpy as np
 from sklearn.preprocessing import normalize
 
-DATA_FOLDERNAME = './cv/data/bunny/bunny_lambert/'  # Lambertian diffuse with cast shadow
-LIGHT_FILENAME = './cv/data/bunny/lights.npy'
-MASK_FILENAME = './cv/data/bunny/mask.png'
-GT_NORMAL_FILENAME = './cv/data/bunny/gt_normal.npy'
+DATA_FOLDERNAME = './pris/cv/data/bunny/bunny_lambert/'  # Lambertian diffuse with cast shadow
+LIGHT_FILENAME = './pris/cv/data/bunny/lights.npy'
+MASK_FILENAME = './pris/cv/data/bunny/mask.png'
+GT_NORMAL_FILENAME = './pris/cv/data/bunny/gt_normal.npy'
 
 class PS(object):
 
