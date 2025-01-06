@@ -3,4 +3,4 @@
 ## 安装
 
 ```bash
-pip install git+https://github.com/yourusername/pris.git
+pip install git+https://github.com/flzt11/TEST.git
